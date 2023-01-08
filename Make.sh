@@ -21,11 +21,19 @@ then
 	echo "Compiling all programs by default (slow process)"
 	echo "> [Simple example] Compiling triangle.cpp"
 	g++ triangle.cpp -o triangle -lGL -lGLU -lglut
+	echo "> [Simple example] Compiling clock.cpp"
+	g++ clock.cpp -o	clock -lGL -lGLU -lglut
 fi
 
+# CLEAN BINARY FILES
 if [ $1 = "clean" ]
 then
 	echo "[CLEAN] Part 1"
 	echo "> Deleting all binary files"
 	find . -type f  ! -name "*.*"  -delete
+fi
+
+if [ $1 = "run" ] 
+then
+	./$2 2> /dev/null
 fi

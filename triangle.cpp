@@ -1,12 +1,16 @@
-// A simple introductory program; its main window contains a static picture
-// of a triangle, whose three vertices are red, green and blue.  The program
-// illustrates viewing with default viewing parameters only.
-
-#ifdef __APPLE_CC__
-#include <GLUT/glut.h>
-#else
 #include <GL/glut.h>
-#endif
+#include <stdio.h>
+#include <iostream>
+
+using namespace std;
+
+float t = 0;
+
+void Timer(int value) {
+	glutTimerFunc(33, Timer, 0);
+	glutPostRedisplay();
+}
+
 
 // Clears the current window and draws a triangle.
 void display() {
@@ -18,11 +22,12 @@ void display() {
   // vertices are connected (or not connected) depends on the argument to
   // glBegin.  GL_POLYGON constructs a filled polygon.
   glBegin(GL_POLYGON);
-    glColor3f(1, 0, 0); glVertex3f(-0.6, -0.75, 0.5);
-    glColor3f(1, 1, 1); glVertex3f(0.6, -0.75, 0);
-    glColor3f(1, 0, 0); glVertex3f(0, 0.75, 0);
+    glColor3f(1, 0, 0); glVertex3f(t, -0.75, 0.5);
+    glColor3f(0, 1, 0); glVertex3f(0.6, -0.75, 0);
+    glColor3f(0, 0, 1); glVertex3f(0, 0.75, 0);
   glEnd();
-
+  printf("Value: %d\n",t);
+  t-= 0.001;
   // Flush drawing command buffer to make drawing happen as soon as possible.
   glFlush();
 }
@@ -45,6 +50,8 @@ int main(int argc, char** argv) {
   // should call the function display().
   glutDisplayFunc(display);
 
+
+  Timer(0);
   // Tell GLUT to start reading and processing events.  This function
   // never returns; the program only exits when the user closes the main
   // window or kills the process.
