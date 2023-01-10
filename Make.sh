@@ -1,13 +1,13 @@
 #!/bin/bash
 
 if [ -z $1 ]
-then 
+then
 	echo "Help command will show you more options"
 	echo $0 "help"
 	exit 0
 fi
 
-if [ $1 = "help" ] 
+if [ $1 = "help" ]
 then
 	echo "[HELP]"
 	echo "Hello from @JoseCutileiro studios"
@@ -16,7 +16,7 @@ fi
 
 
 # COMPILE PROGRAM - DEFAULT
-if [ $1 = "compile" ] 
+if [ $1 = "compile" ]
 then
 	echo "Compiling all programs by default (slow process)"
 	echo "> [Simple example] Compiling triangle.cpp"
@@ -30,10 +30,10 @@ if [ $1 = "clean" ]
 then
 	echo "[CLEAN] Part 1"
 	echo "> Deleting all binary files"
-	find . -type f  ! -name "*.*"  -delete
+	find . -maxdepth 1 -type f  ! -name "*.*"  -delete
 fi
 
-if [ $1 = "run" ] 
+if [ $1 = "run" ]
 then
 	./$2 2> /dev/null
 fi
